@@ -11,8 +11,6 @@ services:
       - .env
     volumes:
       - ./config:/app/config
-      - ./users.json:/app/users.json
-      - ./responses.json:/app/responses.json
     ports:
       - "3001:3001"
     networks:
