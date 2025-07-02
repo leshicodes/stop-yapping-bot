@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stop-yapping-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./config:/app/config
+      - ./users.json:/app/users.json
+      - ./responses.json:/app/responses.json
+    ports:
+      - "3001:3001"
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge
