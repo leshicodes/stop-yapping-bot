@@ -1,4 +1,4 @@
-Collecting workspace information# 🤪 JestBot — A Discord Bot for Friendly Harassment
+# 🤪 JestBot — A Discord Bot for Friendly Harassment
 
 [![discord.js](https://img.shields.io/badge/discord.js-v14-blue.svg)](https://discord.js.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
