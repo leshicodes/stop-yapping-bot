@@ -1,133 +1,122 @@
-# Discord Bot TypeScript Template
+Collecting workspace information# 🤪 JestBot — A Discord Bot for Friendly Harassment
 
-[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)](https://discord.js.org/)
+[![discord.js](https://img.shields.io/badge/discord.js-v14-blue.svg)](https://discord.js.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
-[![Stars](https://img.shields.io/github/stars/KevinNovak/Discord-Bot-TypeScript-Template.svg)](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template/stargazers)
-[![Pull Requests](https://img.shields.io/badge/Pull%20Requests-Welcome!-brightgreen)](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template/pulls)
 
-**Discord bot** - A discord.js bot template written with TypeScript.
+**JestBot** is a lightweight, customizable Discord bot that randomly sends predefined jestful phrases to specific users, providing amusement within your Discord community.
 
-## Introduction
+## 🎯 Introduction
 
-This template was created to give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features. Developers can simply copy this repo, follow the [setup instructions](#setup) below, and have a working bot with many [boilerplate features](#features) already included!
+Ever wanted to playfully tease your friends in your Discord server automatically? JestBot is designed to do just that! This bot monitors message activity and has a random chance to reply with humorous jests when targeted users send messages. Perfect for friend groups who enjoy some light-hearted banter.
 
-For help using this template, feel free to [join our support server](https://discord.gg/c9kQktCbsE)!
+## ✨ Features
 
-[![Discord Shield](https://discord.com/api/guilds/660711235766976553/widget.png?style=shield)](https://discord.gg/c9kQktCbsE)
+- **Targeted Harassment**: Only teases specific users you've added to the list
+- **Random Responses**: Picks from a customizable list of witty comebacks and jests
+- **Probability Control**: Adjust how frequently the bot responds to keep things fun, not annoying
+- **Non-Intrusive**: Won't respond to non-targeted users, itself, or other bots
+- **Easy to Configure**: Simple JSON files for users and responses
 
-## Features
+## 🛠️ Setup
 
-### Built-In Bot Features:
+1. **Copy the configuration files**
+   - Navigate to the config folder of this project
+   - Copy all files ending in `.example.json` and remove the `.example` from the copied file names
 
--   Basic command structure.
--   Rate limits and command cooldowns.
--   Welcome message when joining a server.
--   Shows server count in bot status.
--   Posts server count to popular bot list websites.
--   Support for multiple languages.
+2. **Obtain a Discord bot token**
+   - Create a new application in the [Discord Developer Portal](https://discord.com/developers/applications/)
+   - Navigate to the Bot section and create a bot
+   - Copy the token
 
-### Developer Friendly:
+3. **Configure your bot**
+   - Create a .env file in the root directory with:
+     ```
+     DISCORD_BOT_TOKEN=your_token_here
+     RESPONSE_CHANCE=0.3
+     ```
+   - Edit config.json to include your bot's user ID
 
--   Written with TypeScript.
--   Uses the [discord.js](https://discord.js.org/) framework.
--   Built-in debugging setup for VSCode.
--   Written with [ESM](https://nodejs.org/api/esm.html#introduction) for future compatibility with packages.
--   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
--   Support for running with [Docker](https://www.docker.com/).
+4. **Install dependencies**
+   ```
+   npm install
+   ```
 
-### Scales as Your Bot Grows:
+5. **Register commands**
+   ```
+   npm run commands:register
+   ```
 
--   Supports [sharding](https://discordjs.guide/sharding/) which is required when your bot is in 2500+ servers.
--   Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows you to run your bot on multiple machines.
+6. **Configure target users and responses**
+   - Edit users.json to include Discord user IDs of your targets
+   - Edit responses.json to include your custom jests and comebacks
 
-## Commands
+## 🎮 How It Works
 
-This bot has a few example commands which can be modified as needed.
+JestBot monitors all messages in your Discord server. When it detects a message from one of the users in your users.json file, it rolls a virtual dice (using the `RESPONSE_CHANCE` value). If successful, it randomly selects a jest from responses.json and replies to the targeted user's message.
 
-### Help Command
+## ⚙️ Configuration
 
-A `/help` command to get help on different areas of the bot or to contact support:
+### users.json
+```json
+{
+  "userIds": ["123456789012345678", "234567890123456789"]
+}
+```
 
-![](https://i.imgur.com/UUA4WzL.png)
+### responses.json
+```json
+{
+  "responses": [
+    "Nice try, genius.",
+    "That's a bold take… for someone always wrong.",
+    "You woke up today and chose failure, huh?",
+    "This message brought to you by: the council of poor decisions."
+  ]
+}
+```
 
-![](https://i.imgur.com/YtDdmTe.png)
+### Environment Variables
+- `DISCORD_BOT_TOKEN`: Your Discord bot's token
+- `RESPONSE_CHANCE`: Number between 0-1 determining chance to respond (0.3 = 30% chance)
 
-![](https://i.imgur.com/JXMisap.png)
-
-### Info Command
-
-A `/info` command to get information about the bot or links to different resources.
-
-![](https://i.imgur.com/0kKOaWM.png)
-
-### Test Command
-
-A generic command, `/test`, which can be copied to create additional commands.
-
-![](https://i.imgur.com/lqjkNKM.png)
-
-### Dev Command
-
-A `/dev` command which can only be run by the bot developer. Shows developer information, but can be extended to perform developer-only actions.
-
-![](https://i.imgur.com/2o1vEno.png)
-
-### Welcome Message
-
-A welcome message is sent to the server and owner when the bot is added.
-
-![](https://i.imgur.com/QBw8H8v.png)
-
-## Setup
-
-1. Copy example config files.
-    - Navigate to the `config` folder of this project.
-    - Copy all files ending in `.example.json` and remove the `.example` from the copied file names.
-        - Ex: `config.example.json` should be copied and renamed as `config.json`.
-2. Obtain a bot token.
-    - You'll need to create a new bot in your [Discord Developer Portal](https://discord.com/developers/applications/).
-        - See [here](https://www.writebots.com/discord-bot-token/) for detailed instructions.
-        - At the end you should have a **bot token**.
-3. Modify the config file.
-    - Open the `config/config.json` file.
-    - You'll need to edit the following values:
-        - `client.id` - Your discord bot's [user ID](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/).
-        - `client.token` - Your discord bot's token.
-4. Install packages.
-    - Navigate into the downloaded source files and type `npm install`.
-5. Register commands.
-    - In order to use slash commands, they first [have to be registered](https://discordjs.guide/creating-your-bot/command-deployment.html).
-    - Type `npm run commands:register` to register the bot's commands.
-        - Run this script any time you change a command name, structure, or add/remove commands.
-        - This is so Discord knows what your commands look like.
-        - It may take up to an hour for command changes to appear.
-
-## Start Scripts
+## 🚀 Running the Bot
 
 You can run the bot in multiple modes:
 
-1. Normal Mode
-    - Type `npm start`.
-    - Starts a single instance of the bot.
-2. Manager Mode
-    - Type `npm run start:manager`.
-    - Starts a shard manager which will spawn multiple bot shards.
-3. PM2 Mode
-    - Type `npm run start:pm2`.
-    - Similar to Manager Mode but uses [PM2](https://pm2.keymetrics.io/) to manage processes.
+1. **Normal Mode**
+   ```
+   npm start
+   ```
 
-## Bots Using This Template
+2. **Manager Mode** (for large servers with sharding)
+   ```
+   npm run start:manager
+   ```
 
-A list of Discord bots using this template.
+3. **PM2 Mode** (for production deployment)
+   ```
+   npm run start:pm2
+   ```
 
-| Bot                                                                    | Servers                                                       |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [Birthday Bot](https://top.gg/bot/656621136808902656)                  | ![](https://top.gg/api/widget/servers/656621136808902656.svg) |
-| [QOTD Bot](https://top.gg/bot/713586207119900693)                      | ![](https://top.gg/api/widget/servers/713586207119900693.svg) |
-| [Friend Time](https://top.gg/bot/471091072546766849)                   | ![](https://top.gg/api/widget/servers/471091072546766849.svg) |
-| [Bento](https://top.gg/bot/787041583580184609)                         | ![](https://top.gg/api/widget/servers/787041583580184609.svg) |
-| [NFT-Info](https://top.gg/bot/902249456072818708)                      | ![](https://top.gg/api/widget/servers/902249456072818708.svg) |
-| [Skylink-IF](https://top.gg/bot/929527099922993162)                    | ![](https://top.gg/api/widget/servers/929527099922993162.svg) |
-| [Topcoder TC-101](https://github.com/topcoder-platform/tc-discord-bot) |                                                               |
+## 🔧 Advanced Customization
 
-Don't see your bot listed? [Contact us](https://discord.gg/c9kQktCbsE) to have your bot added!
+- **Response Categories**: Consider tagging responses with categories (light, harsh, joke)
+- **User-Specific Responses**: Create custom response sets for specific users
+- **Cooldown System**: Add time limits between responses to prevent spam
+- **Channel Restrictions**: Configure the bot to only operate in certain channels
+
+## 📜 Legal
+
+For information about data usage, privacy, and terms of service, please see LEGAL.md.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Acknowledgements
+
+- Based on the [Discord Bot TypeScript Template](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template) by KevinNovak
+
+---
+
+*Remember: Keep the jokes friendly and in good fun. Always respect Discord's Community Guidelines and Terms of Service.*
