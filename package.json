@@ -35,7 +35,8 @@
         "pm2:delete": "pm2 delete process.json",
         "test": "vitest run",
         "test:watch": "vitest",
-        "test:coverage": "vitest run --coverage"
+        "test:coverage": "vitest run --coverage",
+        "docker:compose:build:watch": "docker compose up -d --build && docker compose logs -f"
     },
     "dependencies": {
         "@discordjs/rest": "^2.4.3",
