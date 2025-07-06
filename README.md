@@ -14,6 +14,7 @@ Ever wanted to playfully tease your friends in your Discord server automatically
 - **Targeted Harassment**: Only teases specific users you've added to the list
 - **Random Responses**: Picks from a customizable list of witty comebacks and jests
 - **Probability Control**: Adjust how frequently the bot responds to keep things fun, not annoying
+- **Cooldown System**: Prevents spam by limiting how often the bot can respond to the same user
 - **Non-Intrusive**: Won't respond to non-targeted users, itself, or other bots
 - **Easy to Configure**: Simple JSON files for users and responses
 
@@ -52,7 +53,7 @@ Ever wanted to playfully tease your friends in your Discord server automatically
 
 ## 🎮 How It Works
 
-JestBot monitors all messages in your Discord server. When it detects a message from one of the users in your users.json file, it rolls a virtual dice (using the `RESPONSE_CHANCE` value). If successful, it randomly selects a jest from responses.json and replies to the targeted user's message.
+JestBot monitors all messages in your Discord server. When it detects a message from one of the users in your users.json file, it rolls a virtual dice (using the `RESPONSE_CHANCE` value). If successful, it randomly selects a jest from responses.json and replies to the targeted user's message. The cooldown system ensures users won't get bombarded with responses in quick succession.
 
 ## ⚙️ Configuration
 
@@ -74,6 +75,21 @@ JestBot monitors all messages in your Discord server. When it detects a message 
   ]
 }
 ```
+
+### config.json
+```json
+{
+  "...": "other configuration settings",
+  "rateLimiting": {
+    "jestResponses": {
+      "amount": 1,
+      "interval": 300
+    }
+  }
+}
+```
+- `amount`: Number of responses allowed within the time interval
+- `interval`: Time period in seconds before the cooldown resets
 
 ### Environment Variables
 - `DISCORD_BOT_TOKEN`: Your Discord bot's token
@@ -102,7 +118,6 @@ You can run the bot in multiple modes:
 
 - **Response Categories**: Consider tagging responses with categories (light, harsh, joke)
 - **User-Specific Responses**: Create custom response sets for specific users
-- **Cooldown System**: Add time limits between responses to prevent spam
 - **Channel Restrictions**: Configure the bot to only operate in certain channels
 
 ## 📜 Legal
